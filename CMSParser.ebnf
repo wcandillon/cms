@@ -26,9 +26,9 @@ Aggregation
 Group
           ::= '<' AttributeList '>'
 Filter
-          ::= '<' Expression '>'
+          ::= '[' Expression ']'
 Projection
-          ::=    '{' ('*' | AttributeList) '}'
+          ::= '{' ('*' | AttributeList) '}'
 
 AttributeList
           ::= Attribute (',' Attribute)*
@@ -40,13 +40,13 @@ SearchAttr
     ::=    '@' AttrName ('.' '$' AttrName)*
 
 AggregateAttr
-    ::=    '$' AggFunc '(' SearchAttr? ')'
+    ::=    AggFunc '(' SearchAttr? ')'
 
 AttrName
     ::=    NCName
 
 AggFunc
-    ::=   'min' | 'max' | 'avg' | 'sum' | 'count'
+    ::=   '$min' | '$max' | '$avg' | '$sum' | '$count'
 
 //// expression
 Expression

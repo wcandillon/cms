@@ -1,10 +1,11 @@
-// This file was generated on Wed Apr 15, 2015 16:38 (UTC-07) by REx v5.33 which is Copyright (c) 1979-2015 by Gunther Rademacher <grd@gmx.net>
-// REx command line: CMSParser.ebnf -javascript -ll 3 -tree -backtrack
+// This file was generated on Wed Apr 15, 2015 16:48 (UTC-07) by REx v5.33 which is Copyright (c) 1979-2015 by Gunther Rademacher <grd@gmx.net>
+// REx command line: CMSParser.ebnf -javascript -ll 3 -tree -backtrack -name CMSParser -a cms
 
-function CMSParser(string, parsingEventHandler)
+// line 2 "CMSParser.ebnf"
+var CMSParser = exports.CMSParser = function CMSParser(string, parsingEventHandler)
 {
   init(string, parsingEventHandler);
-
+  // line 9 "CMSParser.js"
   var self = this;
 
   this.ParseException = function(b, e, s, o, x)
@@ -125,11 +126,11 @@ function CMSParser(string, parsingEventHandler)
     parse_IntersectionPath();
     for (;;)
     {
-      if (l1 != 43)                 // '||'
+      if (l1 != 45)                 // '||'
       {
         break;
       }
-      shift(43);                    // '||'
+      shift(45);                    // '||'
       parse_IntersectionPath();
     }
     eventHandler.endNonterminal("UnionPath", e0);
@@ -140,11 +141,11 @@ function CMSParser(string, parsingEventHandler)
     try_IntersectionPath();
     for (;;)
     {
-      if (l1 != 43)                 // '||'
+      if (l1 != 45)                 // '||'
       {
         break;
       }
-      shiftT(43);                   // '||'
+      shiftT(45);                   // '||'
       try_IntersectionPath();
     }
   }
@@ -155,12 +156,12 @@ function CMSParser(string, parsingEventHandler)
     parse_PrimaryPath();
     for (;;)
     {
-      lookahead1(17);               // EOF | '&&' | ')' | '||'
-      if (l1 != 9)                  // '&&'
+      lookahead1(15);               // EOF | '&&' | ')' | '||'
+      if (l1 != 14)                 // '&&'
       {
         break;
       }
-      shift(9);                     // '&&'
+      shift(14);                    // '&&'
       parse_PrimaryPath();
     }
     eventHandler.endNonterminal("IntersectionPath", e0);
@@ -171,12 +172,12 @@ function CMSParser(string, parsingEventHandler)
     try_PrimaryPath();
     for (;;)
     {
-      lookahead1(17);               // EOF | '&&' | ')' | '||'
-      if (l1 != 9)                  // '&&'
+      lookahead1(15);               // EOF | '&&' | ')' | '||'
+      if (l1 != 14)                 // '&&'
       {
         break;
       }
-      shiftT(9);                    // '&&'
+      shiftT(14);                   // '&&'
       try_PrimaryPath();
     }
   }
@@ -184,40 +185,40 @@ function CMSParser(string, parsingEventHandler)
   function parse_PrimaryPath()
   {
     eventHandler.startNonterminal("PrimaryPath", e0);
-    lookahead1(14);                 // NCName | '(' | '<'
+    lookahead1(13);                 // NCName | '(' | '<'
     switch (l1)
     {
-      case 10:                        // '('
-        shift(10);                    // '('
+      case 15:                        // '('
+        shift(15);                    // '('
         parse_Path();
-        shift(11);                    // ')'
+        shift(16);                    // ')'
         break;
       default:
         parse_QueryNode();
         for (;;)
         {
-          lookahead1(24);             // EOF | '&&' | ')' | '+.' | '.' | '.+' | '||'
+          lookahead1(21);             // EOF | '&&' | ')' | '+.' | '.' | '.+' | '||'
           switch (l1)
           {
-            case 13:                    // '+.'
-            case 15:                    // '.'
-            case 16:                    // '.+'
-              lookahead2(14);           // NCName | '(' | '<'
+            case 18:                    // '+.'
+            case 20:                    // '.'
+            case 21:                    // '.+'
+              lookahead2(13);           // NCName | '(' | '<'
               switch (lk)
               {
-                case 205:                 // '+.' NCName
-                case 207:                 // '.' NCName
-                case 208:                 // '.+' NCName
-                  lookahead3(28);         // EOF | '!' | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
+                case 210:                 // '+.' NCName
+                case 212:                 // '.' NCName
+                case 213:                 // '.+' NCName
+                  lookahead3(29);         // EOF | '!' | '&&' | ')' | '+.' | '.' | '.+' | '<' | '[' | '{' | '||'
                   break;
-                case 653:                 // '+.' '('
-                case 655:                 // '.' '('
-                case 656:                 // '.+' '('
-                  lookahead3(14);         // NCName | '(' | '<'
+                case 978:                 // '+.' '('
+                case 980:                 // '.' '('
+                case 981:                 // '.+' '('
+                  lookahead3(13);         // NCName | '(' | '<'
                   break;
-                case 1229:                // '+.' '<'
-                case 1231:                // '.' '<'
-                case 1232:                // '.+' '<'
+                case 1554:                // '+.' '<'
+                case 1556:                // '.' '<'
+                case 1557:                // '.+' '<'
                   lookahead3(1);          // NCName
                   break;
               }
@@ -226,9 +227,9 @@ function CMSParser(string, parsingEventHandler)
               lk = l1;
           }
           if (lk != 5                 // EOF
-              && lk != 9                 // '&&'
-              && lk != 11                // ')'
-              && lk != 43)               // '||'
+              && lk != 14                // '&&'
+              && lk != 16                // ')'
+              && lk != 45)               // '||'
           {
             lk = memoized(0, e0);
             if (lk == 0)
@@ -241,14 +242,14 @@ function CMSParser(string, parsingEventHandler)
               {
                 switch (l1)
                 {
-                  case 15:              // '.'
-                    shiftT(15);         // '.'
+                  case 20:              // '.'
+                    shiftT(20);         // '.'
                     break;
-                  case 13:              // '+.'
-                    shiftT(13);         // '+.'
+                  case 18:              // '+.'
+                    shiftT(18);         // '+.'
                     break;
                   default:
-                    shiftT(16);         // '.+'
+                    shiftT(21);         // '.+'
                 }
                 try_PrimaryPath();
                 lk = -1;
@@ -270,14 +271,14 @@ function CMSParser(string, parsingEventHandler)
           }
           switch (l1)
           {
-            case 15:                    // '.'
-              shift(15);                // '.'
+            case 20:                    // '.'
+              shift(20);                // '.'
               break;
-            case 13:                    // '+.'
-              shift(13);                // '+.'
+            case 18:                    // '+.'
+              shift(18);                // '+.'
               break;
             default:
-              shift(16);                // '.+'
+              shift(21);                // '.+'
           }
           parse_PrimaryPath();
         }
@@ -287,40 +288,40 @@ function CMSParser(string, parsingEventHandler)
 
   function try_PrimaryPath()
   {
-    lookahead1(14);                 // NCName | '(' | '<'
+    lookahead1(13);                 // NCName | '(' | '<'
     switch (l1)
     {
-      case 10:                        // '('
-        shiftT(10);                   // '('
+      case 15:                        // '('
+        shiftT(15);                   // '('
         try_Path();
-        shiftT(11);                   // ')'
+        shiftT(16);                   // ')'
         break;
       default:
         try_QueryNode();
         for (;;)
         {
-          lookahead1(24);             // EOF | '&&' | ')' | '+.' | '.' | '.+' | '||'
+          lookahead1(21);             // EOF | '&&' | ')' | '+.' | '.' | '.+' | '||'
           switch (l1)
           {
-            case 13:                    // '+.'
-            case 15:                    // '.'
-            case 16:                    // '.+'
-              lookahead2(14);           // NCName | '(' | '<'
+            case 18:                    // '+.'
+            case 20:                    // '.'
+            case 21:                    // '.+'
+              lookahead2(13);           // NCName | '(' | '<'
               switch (lk)
               {
-                case 205:                 // '+.' NCName
-                case 207:                 // '.' NCName
-                case 208:                 // '.+' NCName
-                  lookahead3(28);         // EOF | '!' | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
+                case 210:                 // '+.' NCName
+                case 212:                 // '.' NCName
+                case 213:                 // '.+' NCName
+                  lookahead3(29);         // EOF | '!' | '&&' | ')' | '+.' | '.' | '.+' | '<' | '[' | '{' | '||'
                   break;
-                case 653:                 // '+.' '('
-                case 655:                 // '.' '('
-                case 656:                 // '.+' '('
-                  lookahead3(14);         // NCName | '(' | '<'
+                case 978:                 // '+.' '('
+                case 980:                 // '.' '('
+                case 981:                 // '.+' '('
+                  lookahead3(13);         // NCName | '(' | '<'
                   break;
-                case 1229:                // '+.' '<'
-                case 1231:                // '.' '<'
-                case 1232:                // '.+' '<'
+                case 1554:                // '+.' '<'
+                case 1556:                // '.' '<'
+                case 1557:                // '.+' '<'
                   lookahead3(1);          // NCName
                   break;
               }
@@ -329,9 +330,9 @@ function CMSParser(string, parsingEventHandler)
               lk = l1;
           }
           if (lk != 5                 // EOF
-              && lk != 9                 // '&&'
-              && lk != 11                // ')'
-              && lk != 43)               // '||'
+              && lk != 14                // '&&'
+              && lk != 16                // ')'
+              && lk != 45)               // '||'
           {
             lk = memoized(0, e0);
             if (lk == 0)
@@ -344,14 +345,14 @@ function CMSParser(string, parsingEventHandler)
               {
                 switch (l1)
                 {
-                  case 15:              // '.'
-                    shiftT(15);         // '.'
+                  case 20:              // '.'
+                    shiftT(20);         // '.'
                     break;
-                  case 13:              // '+.'
-                    shiftT(13);         // '+.'
+                  case 18:              // '+.'
+                    shiftT(18);         // '+.'
                     break;
                   default:
-                    shiftT(16);         // '.+'
+                    shiftT(21);         // '.+'
                 }
                 try_PrimaryPath();
                 memoize(0, e0A, -1);
@@ -374,14 +375,14 @@ function CMSParser(string, parsingEventHandler)
           }
           switch (l1)
           {
-            case 15:                    // '.'
-              shiftT(15);               // '.'
+            case 20:                    // '.'
+              shiftT(20);               // '.'
               break;
-            case 13:                    // '+.'
-              shiftT(13);               // '+.'
+            case 18:                    // '+.'
+              shiftT(18);               // '+.'
               break;
             default:
-              shiftT(16);               // '.+'
+              shiftT(21);               // '.+'
           }
           try_PrimaryPath();
         }
@@ -391,75 +392,23 @@ function CMSParser(string, parsingEventHandler)
   function parse_QueryNode()
   {
     eventHandler.startNonterminal("QueryNode", e0);
-    if (l1 == 19)                   // '<'
+    if (l1 == 24)                   // '<'
     {
       parse_TypeCast();
     }
     parse_NodeName();
-    lookahead1(27);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
-    switch (l1)
-    {
-      case 19:                        // '<'
-        lookahead2(25);               // '$' | '(' | '@' | 'exists' | 'isempty' | 'isnull' | 'not'
-        switch (lk)
-        {
-          case 531:                     // '<' '$'
-            lookahead3(19);             // 'avg' | 'count' | 'max' | 'min' | 'sum'
-            break;
-          case 1683:                    // '<' '@'
-            lookahead3(1);              // NCName
-            break;
-        }
-        break;
-      default:
-        lk = l1;
-    }
-    if (lk == 13971                 // '<' '@' NCName
-        || lk == 115219                // '<' '$' 'avg'
-        || lk == 119315                // '<' '$' 'count'
-        || lk == 147987                // '<' '$' 'max'
-        || lk == 152083                // '<' '$' 'min'
-        || lk == 164371)               // '<' '$' 'sum'
-    {
-      lk = memoized(1, e0);
-      if (lk == 0)
-      {
-        var b0A = b0; var e0A = e0; var l1A = l1;
-        var b1A = b1; var e1A = e1; var l2A = l2;
-        var b2A = b2; var e2A = e2; var l3A = l3;
-        var b3A = b3; var e3A = e3;
-        try
-        {
-          try_Filter();
-          lk = -1;
-        }
-        catch (p1A)
-        {
-          lk = -2;
-        }
-        b0 = b0A; e0 = e0A; l1 = l1A; if (l1 == 0) {end = e0A;} else {
-        b1 = b1A; e1 = e1A; l2 = l2A; if (l2 == 0) {end = e1A;} else {
-          b2 = b2A; e2 = e2A; l3 = l3A; if (l3 == 0) {end = e2A;} else {
-            b3 = b3A; e3 = e3A; end = e3A; }}}
-        memoize(1, e0, lk);
-      }
-    }
-    if (lk == -1
-        || lk == 659                   // '<' '('
-        || lk == 2003                  // '<' 'exists'
-        || lk == 2195                  // '<' 'isempty'
-        || lk == 2259                  // '<' 'isnull'
-        || lk == 2451)                 // '<' 'not'
+    lookahead1(26);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '[' | '{' | '||'
+    if (l1 == 32)                   // '['
     {
       parse_Filter();
     }
-    lookahead1(27);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
-    if (l1 == 19)                   // '<'
+    lookahead1(24);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
+    if (l1 == 24)                   // '<'
     {
       parse_Aggregation();
     }
-    lookahead1(26);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '{' | '||'
-    if (l1 == 42)                   // '{'
+    lookahead1(23);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '{' | '||'
+    if (l1 == 44)                   // '{'
     {
       parse_Projection();
     }
@@ -468,75 +417,23 @@ function CMSParser(string, parsingEventHandler)
 
   function try_QueryNode()
   {
-    if (l1 == 19)                   // '<'
+    if (l1 == 24)                   // '<'
     {
       try_TypeCast();
     }
     try_NodeName();
-    lookahead1(27);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
-    switch (l1)
-    {
-      case 19:                        // '<'
-        lookahead2(25);               // '$' | '(' | '@' | 'exists' | 'isempty' | 'isnull' | 'not'
-        switch (lk)
-        {
-          case 531:                     // '<' '$'
-            lookahead3(19);             // 'avg' | 'count' | 'max' | 'min' | 'sum'
-            break;
-          case 1683:                    // '<' '@'
-            lookahead3(1);              // NCName
-            break;
-        }
-        break;
-      default:
-        lk = l1;
-    }
-    if (lk == 13971                 // '<' '@' NCName
-        || lk == 115219                // '<' '$' 'avg'
-        || lk == 119315                // '<' '$' 'count'
-        || lk == 147987                // '<' '$' 'max'
-        || lk == 152083                // '<' '$' 'min'
-        || lk == 164371)               // '<' '$' 'sum'
-    {
-      lk = memoized(1, e0);
-      if (lk == 0)
-      {
-        var b0A = b0; var e0A = e0; var l1A = l1;
-        var b1A = b1; var e1A = e1; var l2A = l2;
-        var b2A = b2; var e2A = e2; var l3A = l3;
-        var b3A = b3; var e3A = e3;
-        try
-        {
-          try_Filter();
-          memoize(1, e0A, -1);
-        }
-        catch (p1A)
-        {
-          b0 = b0A; e0 = e0A; l1 = l1A; if (l1 == 0) {end = e0A;} else {
-          b1 = b1A; e1 = e1A; l2 = l2A; if (l2 == 0) {end = e1A;} else {
-            b2 = b2A; e2 = e2A; l3 = l3A; if (l3 == 0) {end = e2A;} else {
-              b3 = b3A; e3 = e3A; end = e3A; }}}
-          memoize(1, e0A, -2);
-        }
-        lk = -2;
-      }
-    }
-    if (lk == -1
-        || lk == 659                   // '<' '('
-        || lk == 2003                  // '<' 'exists'
-        || lk == 2195                  // '<' 'isempty'
-        || lk == 2259                  // '<' 'isnull'
-        || lk == 2451)                 // '<' 'not'
+    lookahead1(26);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '[' | '{' | '||'
+    if (l1 == 32)                   // '['
     {
       try_Filter();
     }
-    lookahead1(27);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
-    if (l1 == 19)                   // '<'
+    lookahead1(24);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
+    if (l1 == 24)                   // '<'
     {
       try_Aggregation();
     }
-    lookahead1(26);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '{' | '||'
-    if (l1 == 42)                   // '{'
+    lookahead1(23);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '{' | '||'
+    if (l1 == 44)                   // '{'
     {
       try_Projection();
     }
@@ -547,7 +444,7 @@ function CMSParser(string, parsingEventHandler)
     eventHandler.startNonterminal("NodeName", e0);
     lookahead1(1);                  // NCName
     shift(3);                       // NCName
-    lookahead1(28);                 // EOF | '!' | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
+    lookahead1(29);                 // EOF | '!' | '&&' | ')' | '+.' | '.' | '.+' | '<' | '[' | '{' | '||'
     if (l1 == 6)                    // '!'
     {
       shift(6);                     // '!'
@@ -561,7 +458,7 @@ function CMSParser(string, parsingEventHandler)
   {
     lookahead1(1);                  // NCName
     shiftT(3);                      // NCName
-    lookahead1(28);                 // EOF | '!' | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
+    lookahead1(29);                 // EOF | '!' | '&&' | ')' | '+.' | '.' | '.+' | '<' | '[' | '{' | '||'
     if (l1 == 6)                    // '!'
     {
       shiftT(6);                    // '!'
@@ -573,37 +470,37 @@ function CMSParser(string, parsingEventHandler)
   function parse_TypeCast()
   {
     eventHandler.startNonterminal("TypeCast", e0);
-    shift(19);                      // '<'
+    shift(24);                      // '<'
     parse_TypeName();
     for (;;)
     {
-      lookahead1(13);               // ',' | '>'
-      if (l1 != 14)                 // ','
+      lookahead1(12);               // ',' | '>'
+      if (l1 != 19)                 // ','
       {
         break;
       }
-      shift(14);                    // ','
+      shift(19);                    // ','
       parse_TypeName();
     }
-    shift(24);                      // '>'
+    shift(29);                      // '>'
     eventHandler.endNonterminal("TypeCast", e0);
   }
 
   function try_TypeCast()
   {
-    shiftT(19);                     // '<'
+    shiftT(24);                     // '<'
     try_TypeName();
     for (;;)
     {
-      lookahead1(13);               // ',' | '>'
-      if (l1 != 14)                 // ','
+      lookahead1(12);               // ',' | '>'
+      if (l1 != 19)                 // ','
       {
         break;
       }
-      shiftT(14);                   // ','
+      shiftT(19);                   // ','
       try_TypeName();
     }
-    shiftT(24);                     // '>'
+    shiftT(29);                     // '>'
   }
 
   function parse_TypeName()
@@ -624,8 +521,8 @@ function CMSParser(string, parsingEventHandler)
   {
     eventHandler.startNonterminal("Aggregation", e0);
     parse_Group();
-    lookahead1(27);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
-    if (l1 == 19)                   // '<'
+    lookahead1(25);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '[' | '{' | '||'
+    if (l1 == 32)                   // '['
     {
       parse_Filter();
     }
@@ -635,8 +532,8 @@ function CMSParser(string, parsingEventHandler)
   function try_Aggregation()
   {
     try_Group();
-    lookahead1(27);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '<' | '{' | '||'
-    if (l1 == 19)                   // '<'
+    lookahead1(25);                 // EOF | '&&' | ')' | '+.' | '.' | '.+' | '[' | '{' | '||'
+    if (l1 == 32)                   // '['
     {
       try_Filter();
     }
@@ -645,67 +542,67 @@ function CMSParser(string, parsingEventHandler)
   function parse_Group()
   {
     eventHandler.startNonterminal("Group", e0);
-    shift(19);                      // '<'
+    shift(24);                      // '<'
     parse_AttributeList();
-    shift(24);                      // '>'
+    shift(29);                      // '>'
     eventHandler.endNonterminal("Group", e0);
   }
 
   function try_Group()
   {
-    shiftT(19);                     // '<'
+    shiftT(24);                     // '<'
     try_AttributeList();
-    shiftT(24);                     // '>'
+    shiftT(29);                     // '>'
   }
 
   function parse_Filter()
   {
     eventHandler.startNonterminal("Filter", e0);
-    shift(19);                      // '<'
+    shift(32);                      // '['
     parse_Expression();
-    shift(24);                      // '>'
+    shift(33);                      // ']'
     eventHandler.endNonterminal("Filter", e0);
   }
 
   function try_Filter()
   {
-    shiftT(19);                     // '<'
+    shiftT(32);                     // '['
     try_Expression();
-    shiftT(24);                     // '>'
+    shiftT(33);                     // ']'
   }
 
   function parse_Projection()
   {
     eventHandler.startNonterminal("Projection", e0);
-    shift(42);                      // '{'
-    lookahead1(15);                 // '$' | '*' | '@'
+    shift(44);                      // '{'
+    lookahead1(22);                 // '$avg' | '$count' | '$max' | '$min' | '$sum' | '*' | '@'
     switch (l1)
     {
-      case 12:                        // '*'
-        shift(12);                    // '*'
+      case 17:                        // '*'
+        shift(17);                    // '*'
         break;
       default:
         parse_AttributeList();
     }
     lookahead1(9);                  // '}'
-    shift(44);                      // '}'
+    shift(46);                      // '}'
     eventHandler.endNonterminal("Projection", e0);
   }
 
   function try_Projection()
   {
-    shiftT(42);                     // '{'
-    lookahead1(15);                 // '$' | '*' | '@'
+    shiftT(44);                     // '{'
+    lookahead1(22);                 // '$avg' | '$count' | '$max' | '$min' | '$sum' | '*' | '@'
     switch (l1)
     {
-      case 12:                        // '*'
-        shiftT(12);                   // '*'
+      case 17:                        // '*'
+        shiftT(17);                   // '*'
         break;
       default:
         try_AttributeList();
     }
     lookahead1(9);                  // '}'
-    shiftT(44);                     // '}'
+    shiftT(46);                     // '}'
   }
 
   function parse_AttributeList()
@@ -714,12 +611,12 @@ function CMSParser(string, parsingEventHandler)
     parse_Attribute();
     for (;;)
     {
-      lookahead1(16);               // ',' | '>' | '}'
-      if (l1 != 14)                 // ','
+      lookahead1(14);               // ',' | '>' | '}'
+      if (l1 != 19)                 // ','
       {
         break;
       }
-      shift(14);                    // ','
+      shift(19);                    // ','
       parse_Attribute();
     }
     eventHandler.endNonterminal("AttributeList", e0);
@@ -730,12 +627,12 @@ function CMSParser(string, parsingEventHandler)
     try_Attribute();
     for (;;)
     {
-      lookahead1(16);               // ',' | '>' | '}'
-      if (l1 != 14)                 // ','
+      lookahead1(14);               // ',' | '>' | '}'
+      if (l1 != 19)                 // ','
       {
         break;
       }
-      shiftT(14);                   // ','
+      shiftT(19);                   // ','
       try_Attribute();
     }
   }
@@ -743,10 +640,10 @@ function CMSParser(string, parsingEventHandler)
   function parse_Attribute()
   {
     eventHandler.startNonterminal("Attribute", e0);
-    lookahead1(10);                 // '$' | '@'
+    lookahead1(19);                 // '$avg' | '$count' | '$max' | '$min' | '$sum' | '@'
     switch (l1)
     {
-      case 26:                        // '@'
+      case 31:                        // '@'
         parse_SearchAttr();
         break;
       default:
@@ -757,10 +654,10 @@ function CMSParser(string, parsingEventHandler)
 
   function try_Attribute()
   {
-    lookahead1(10);                 // '$' | '@'
+    lookahead1(19);                 // '$avg' | '$count' | '$max' | '$min' | '$sum' | '@'
     switch (l1)
     {
-      case 26:                        // '@'
+      case 31:                        // '@'
         try_SearchAttr();
         break;
       default:
@@ -771,17 +668,17 @@ function CMSParser(string, parsingEventHandler)
   function parse_SearchAttr()
   {
     eventHandler.startNonterminal("SearchAttr", e0);
-    shift(26);                      // '@'
+    shift(31);                      // '@'
     parse_AttrName();
     for (;;)
     {
-      lookahead1(30);               // '!=' | ')' | ',' | '.' | '<' | '<=' | '=' | '=&' | '=~' | '>' | '>=' | 'and' |
-                                    // 'in' | 'or' | '}'
-      if (l1 != 15)                 // '.'
+      lookahead1(31);               // '!=' | ')' | ',' | '.' | '<' | '<=' | '=' | '=&' | '=~' | '>' | '>=' | ']' |
+                                    // 'and' | 'in' | 'or' | '}'
+      if (l1 != 20)                 // '.'
       {
         break;
       }
-      shift(15);                    // '.'
+      shift(20);                    // '.'
       lookahead1(3);                // '$'
       shift(8);                     // '$'
       parse_AttrName();
@@ -791,17 +688,17 @@ function CMSParser(string, parsingEventHandler)
 
   function try_SearchAttr()
   {
-    shiftT(26);                     // '@'
+    shiftT(31);                     // '@'
     try_AttrName();
     for (;;)
     {
-      lookahead1(30);               // '!=' | ')' | ',' | '.' | '<' | '<=' | '=' | '=&' | '=~' | '>' | '>=' | 'and' |
-                                    // 'in' | 'or' | '}'
-      if (l1 != 15)                 // '.'
+      lookahead1(31);               // '!=' | ')' | ',' | '.' | '<' | '<=' | '=' | '=&' | '=~' | '>' | '>=' | ']' |
+                                    // 'and' | 'in' | 'or' | '}'
+      if (l1 != 20)                 // '.'
       {
         break;
       }
-      shiftT(15);                   // '.'
+      shiftT(20);                   // '.'
       lookahead1(3);                // '$'
       shiftT(8);                    // '$'
       try_AttrName();
@@ -811,31 +708,29 @@ function CMSParser(string, parsingEventHandler)
   function parse_AggregateAttr()
   {
     eventHandler.startNonterminal("AggregateAttr", e0);
-    shift(8);                       // '$'
     parse_AggFunc();
     lookahead1(4);                  // '('
-    shift(10);                      // '('
-    lookahead1(12);                 // ')' | '@'
-    if (l1 == 26)                   // '@'
+    shift(15);                      // '('
+    lookahead1(11);                 // ')' | '@'
+    if (l1 == 31)                   // '@'
     {
       parse_SearchAttr();
     }
-    shift(11);                      // ')'
+    shift(16);                      // ')'
     eventHandler.endNonterminal("AggregateAttr", e0);
   }
 
   function try_AggregateAttr()
   {
-    shiftT(8);                      // '$'
     try_AggFunc();
     lookahead1(4);                  // '('
-    shiftT(10);                     // '('
-    lookahead1(12);                 // ')' | '@'
-    if (l1 == 26)                   // '@'
+    shiftT(15);                     // '('
+    lookahead1(11);                 // ')' | '@'
+    if (l1 == 31)                   // '@'
     {
       try_SearchAttr();
     }
-    shiftT(11);                     // ')'
+    shiftT(16);                     // ')'
   }
 
   function parse_AttrName()
@@ -855,46 +750,44 @@ function CMSParser(string, parsingEventHandler)
   function parse_AggFunc()
   {
     eventHandler.startNonterminal("AggFunc", e0);
-    lookahead1(19);                 // 'avg' | 'count' | 'max' | 'min' | 'sum'
     switch (l1)
     {
-      case 37:                        // 'min'
-        shift(37);                    // 'min'
+      case 12:                        // '$min'
+        shift(12);                    // '$min'
         break;
-      case 36:                        // 'max'
-        shift(36);                    // 'max'
+      case 11:                        // '$max'
+        shift(11);                    // '$max'
         break;
-      case 28:                        // 'avg'
-        shift(28);                    // 'avg'
+      case 9:                         // '$avg'
+        shift(9);                     // '$avg'
         break;
-      case 40:                        // 'sum'
-        shift(40);                    // 'sum'
+      case 13:                        // '$sum'
+        shift(13);                    // '$sum'
         break;
       default:
-        shift(29);                    // 'count'
+        shift(10);                    // '$count'
     }
     eventHandler.endNonterminal("AggFunc", e0);
   }
 
   function try_AggFunc()
   {
-    lookahead1(19);                 // 'avg' | 'count' | 'max' | 'min' | 'sum'
     switch (l1)
     {
-      case 37:                        // 'min'
-        shiftT(37);                   // 'min'
+      case 12:                        // '$min'
+        shiftT(12);                   // '$min'
         break;
-      case 36:                        // 'max'
-        shiftT(36);                   // 'max'
+      case 11:                        // '$max'
+        shiftT(11);                   // '$max'
         break;
-      case 28:                        // 'avg'
-        shiftT(28);                   // 'avg'
+      case 9:                         // '$avg'
+        shiftT(9);                    // '$avg'
         break;
-      case 40:                        // 'sum'
-        shiftT(40);                   // 'sum'
+      case 13:                        // '$sum'
+        shiftT(13);                   // '$sum'
         break;
       default:
-        shiftT(29);                   // 'count'
+        shiftT(10);                   // '$count'
     }
   }
 
@@ -916,11 +809,11 @@ function CMSParser(string, parsingEventHandler)
     parse_AndExpr();
     for (;;)
     {
-      if (l1 != 39)                 // 'or'
+      if (l1 != 42)                 // 'or'
       {
         break;
       }
-      shift(39);                    // 'or'
+      shift(42);                    // 'or'
       parse_AndExpr();
     }
     eventHandler.endNonterminal("OrExpr", e0);
@@ -931,11 +824,11 @@ function CMSParser(string, parsingEventHandler)
     try_AndExpr();
     for (;;)
     {
-      if (l1 != 39)                 // 'or'
+      if (l1 != 42)                 // 'or'
       {
         break;
       }
-      shiftT(39);                   // 'or'
+      shiftT(42);                   // 'or'
       try_AndExpr();
     }
   }
@@ -946,12 +839,12 @@ function CMSParser(string, parsingEventHandler)
     parse_NotExpr();
     for (;;)
     {
-      lookahead1(18);               // ')' | '>' | 'and' | 'or'
-      if (l1 != 27)                 // 'and'
+      lookahead1(16);               // ')' | ']' | 'and' | 'or'
+      if (l1 != 34)                 // 'and'
       {
         break;
       }
-      shift(27);                    // 'and'
+      shift(34);                    // 'and'
       parse_NotExpr();
     }
     eventHandler.endNonterminal("AndExpr", e0);
@@ -962,12 +855,12 @@ function CMSParser(string, parsingEventHandler)
     try_NotExpr();
     for (;;)
     {
-      lookahead1(18);               // ')' | '>' | 'and' | 'or'
-      if (l1 != 27)                 // 'and'
+      lookahead1(16);               // ')' | ']' | 'and' | 'or'
+      if (l1 != 34)                 // 'and'
       {
         break;
       }
-      shiftT(27);                   // 'and'
+      shiftT(34);                   // 'and'
       try_NotExpr();
     }
   }
@@ -975,10 +868,11 @@ function CMSParser(string, parsingEventHandler)
   function parse_NotExpr()
   {
     eventHandler.startNonterminal("NotExpr", e0);
-    lookahead1(25);                 // '$' | '(' | '@' | 'exists' | 'isempty' | 'isnull' | 'not'
-    if (l1 == 38)                   // 'not'
+    lookahead1(30);                 // '$avg' | '$count' | '$max' | '$min' | '$sum' | '(' | '@' | 'exists' | 'isempty' |
+                                    // 'isnull' | 'not'
+    if (l1 == 41)                   // 'not'
     {
-      shift(38);                    // 'not'
+      shift(41);                    // 'not'
     }
     parse_PrimaryExpr();
     eventHandler.endNonterminal("NotExpr", e0);
@@ -986,10 +880,11 @@ function CMSParser(string, parsingEventHandler)
 
   function try_NotExpr()
   {
-    lookahead1(25);                 // '$' | '(' | '@' | 'exists' | 'isempty' | 'isnull' | 'not'
-    if (l1 == 38)                   // 'not'
+    lookahead1(30);                 // '$avg' | '$count' | '$max' | '$min' | '$sum' | '(' | '@' | 'exists' | 'isempty' |
+                                    // 'isnull' | 'not'
+    if (l1 == 41)                   // 'not'
     {
-      shiftT(38);                   // 'not'
+      shiftT(41);                   // 'not'
     }
     try_PrimaryExpr();
   }
@@ -997,42 +892,52 @@ function CMSParser(string, parsingEventHandler)
   function parse_PrimaryExpr()
   {
     eventHandler.startNonterminal("PrimaryExpr", e0);
-    lookahead1(22);                 // '$' | '(' | '@' | 'exists' | 'isempty' | 'isnull'
+    lookahead1(28);                 // '$avg' | '$count' | '$max' | '$min' | '$sum' | '(' | '@' | 'exists' | 'isempty' |
+                                    // 'isnull'
     switch (l1)
     {
-      case 8:                         // '$'
-        lookahead2(19);               // 'avg' | 'count' | 'max' | 'min' | 'sum'
-        switch (lk)
-        {
-          case 1800:                    // '$' 'avg'
-          case 1864:                    // '$' 'count'
-          case 2312:                    // '$' 'max'
-          case 2376:                    // '$' 'min'
-          case 2568:                    // '$' 'sum'
-            lookahead3(4);              // '('
-            break;
-        }
-        break;
-      case 26:                        // '@'
+      case 31:                        // '@'
         lookahead2(1);                // NCName
         switch (lk)
         {
-          case 218:                     // '@' NCName
-            lookahead3(29);             // '!=' | '.' | '<' | '<=' | '=' | '=&' | '=~' | '>' | '>=' | 'in'
+          case 223:                     // '@' NCName
+            lookahead3(27);             // '!=' | '.' | '<' | '<=' | '=' | '=&' | '=~' | '>' | '>=' | 'in'
+            break;
+        }
+        break;
+      case 9:                         // '$avg'
+      case 10:                        // '$count'
+      case 11:                        // '$max'
+      case 12:                        // '$min'
+      case 13:                        // '$sum'
+        lookahead2(4);                // '('
+        switch (lk)
+        {
+          case 969:                     // '$avg' '('
+          case 970:                     // '$count' '('
+          case 971:                     // '$max' '('
+          case 972:                     // '$min' '('
+          case 973:                     // '$sum' '('
+            lookahead3(11);             // ')' | '@'
             break;
         }
         break;
       default:
         lk = l1;
     }
-    if (lk == 42760                 // '$' 'avg' '('
-        || lk == 42824                 // '$' 'count' '('
-        || lk == 43272                 // '$' 'max' '('
-        || lk == 43336                 // '$' 'min' '('
-        || lk == 43528                 // '$' 'sum' '('
-        || lk == 61658)                // '@' NCName '.'
+    if (lk == 66505                 // '$avg' '(' ')'
+        || lk == 66506                 // '$count' '(' ')'
+        || lk == 66507                 // '$max' '(' ')'
+        || lk == 66508                 // '$min' '(' ')'
+        || lk == 66509                 // '$sum' '(' ')'
+        || lk == 82143                 // '@' NCName '.'
+        || lk == 127945                // '$avg' '(' '@'
+        || lk == 127946                // '$count' '(' '@'
+        || lk == 127947                // '$max' '(' '@'
+        || lk == 127948                // '$min' '(' '@'
+        || lk == 127949)               // '$sum' '(' '@'
     {
-      lk = memoized(2, e0);
+      lk = memoized(1, e0);
       if (lk == 0)
       {
         var b0A = b0; var e0A = e0; var l1A = l1;
@@ -1076,35 +981,35 @@ function CMSParser(string, parsingEventHandler)
         b1 = b1A; e1 = e1A; l2 = l2A; if (l2 == 0) {end = e1A;} else {
           b2 = b2A; e2 = e2A; l3 = l3A; if (l3 == 0) {end = e2A;} else {
             b3 = b3A; e3 = e3A; end = e3A; }}}
-        memoize(2, e0, lk);
+        memoize(1, e0, lk);
       }
     }
     switch (lk)
     {
-      case 10:                        // '('
-        shift(10);                    // '('
+      case 15:                        // '('
+        shift(15);                    // '('
         parse_Expression();
-        shift(11);                    // ')'
+        shift(16);                    // ')'
         break;
       case -3:
-      case 135386:                    // '@' NCName 'in'
+      case 155871:                    // '@' NCName 'in'
         parse_InExpr();
         break;
       case -4:
-      case 94426:                     // '@' NCName '=~'
+      case 114911:                    // '@' NCName '=~'
         parse_RegexExpr();
         break;
-      case 31:                        // 'exists'
+      case 36:                        // 'exists'
         parse_ExistExpr();
         break;
       case -6:
-      case 90330:                     // '@' NCName '=&'
+      case 110815:                    // '@' NCName '=&'
         parse_SubQueryExpr();
         break;
-      case 35:                        // 'isnull'
+      case 40:                        // 'isnull'
         parse_IsnullExpr();
         break;
-      case 34:                        // 'isempty'
+      case 39:                        // 'isempty'
         parse_IsemptyExpr();
         break;
       default:
@@ -1115,42 +1020,52 @@ function CMSParser(string, parsingEventHandler)
 
   function try_PrimaryExpr()
   {
-    lookahead1(22);                 // '$' | '(' | '@' | 'exists' | 'isempty' | 'isnull'
+    lookahead1(28);                 // '$avg' | '$count' | '$max' | '$min' | '$sum' | '(' | '@' | 'exists' | 'isempty' |
+                                    // 'isnull'
     switch (l1)
     {
-      case 8:                         // '$'
-        lookahead2(19);               // 'avg' | 'count' | 'max' | 'min' | 'sum'
-        switch (lk)
-        {
-          case 1800:                    // '$' 'avg'
-          case 1864:                    // '$' 'count'
-          case 2312:                    // '$' 'max'
-          case 2376:                    // '$' 'min'
-          case 2568:                    // '$' 'sum'
-            lookahead3(4);              // '('
-            break;
-        }
-        break;
-      case 26:                        // '@'
+      case 31:                        // '@'
         lookahead2(1);                // NCName
         switch (lk)
         {
-          case 218:                     // '@' NCName
-            lookahead3(29);             // '!=' | '.' | '<' | '<=' | '=' | '=&' | '=~' | '>' | '>=' | 'in'
+          case 223:                     // '@' NCName
+            lookahead3(27);             // '!=' | '.' | '<' | '<=' | '=' | '=&' | '=~' | '>' | '>=' | 'in'
+            break;
+        }
+        break;
+      case 9:                         // '$avg'
+      case 10:                        // '$count'
+      case 11:                        // '$max'
+      case 12:                        // '$min'
+      case 13:                        // '$sum'
+        lookahead2(4);                // '('
+        switch (lk)
+        {
+          case 969:                     // '$avg' '('
+          case 970:                     // '$count' '('
+          case 971:                     // '$max' '('
+          case 972:                     // '$min' '('
+          case 973:                     // '$sum' '('
+            lookahead3(11);             // ')' | '@'
             break;
         }
         break;
       default:
         lk = l1;
     }
-    if (lk == 42760                 // '$' 'avg' '('
-        || lk == 42824                 // '$' 'count' '('
-        || lk == 43272                 // '$' 'max' '('
-        || lk == 43336                 // '$' 'min' '('
-        || lk == 43528                 // '$' 'sum' '('
-        || lk == 61658)                // '@' NCName '.'
+    if (lk == 66505                 // '$avg' '(' ')'
+        || lk == 66506                 // '$count' '(' ')'
+        || lk == 66507                 // '$max' '(' ')'
+        || lk == 66508                 // '$min' '(' ')'
+        || lk == 66509                 // '$sum' '(' ')'
+        || lk == 82143                 // '@' NCName '.'
+        || lk == 127945                // '$avg' '(' '@'
+        || lk == 127946                // '$count' '(' '@'
+        || lk == 127947                // '$max' '(' '@'
+        || lk == 127948                // '$min' '(' '@'
+        || lk == 127949)               // '$sum' '(' '@'
     {
-      lk = memoized(2, e0);
+      lk = memoized(1, e0);
       if (lk == 0)
       {
         var b0A = b0; var e0A = e0; var l1A = l1;
@@ -1160,7 +1075,7 @@ function CMSParser(string, parsingEventHandler)
         try
         {
           try_CompExpr();
-          memoize(2, e0A, -2);
+          memoize(1, e0A, -2);
           lk = -9;
         }
         catch (p2A)
@@ -1172,7 +1087,7 @@ function CMSParser(string, parsingEventHandler)
               b2 = b2A; e2 = e2A; l3 = l3A; if (l3 == 0) {end = e2A;} else {
                 b3 = b3A; e3 = e3A; end = e3A; }}}
             try_InExpr();
-            memoize(2, e0A, -3);
+            memoize(1, e0A, -3);
             lk = -9;
           }
           catch (p3A)
@@ -1184,7 +1099,7 @@ function CMSParser(string, parsingEventHandler)
                 b2 = b2A; e2 = e2A; l3 = l3A; if (l3 == 0) {end = e2A;} else {
                   b3 = b3A; e3 = e3A; end = e3A; }}}
               try_RegexExpr();
-              memoize(2, e0A, -4);
+              memoize(1, e0A, -4);
               lk = -9;
             }
             catch (p4A)
@@ -1194,7 +1109,7 @@ function CMSParser(string, parsingEventHandler)
               b1 = b1A; e1 = e1A; l2 = l2A; if (l2 == 0) {end = e1A;} else {
                 b2 = b2A; e2 = e2A; l3 = l3A; if (l3 == 0) {end = e2A;} else {
                   b3 = b3A; e3 = e3A; end = e3A; }}}
-              memoize(2, e0A, -6);
+              memoize(1, e0A, -6);
             }
           }
         }
@@ -1202,30 +1117,30 @@ function CMSParser(string, parsingEventHandler)
     }
     switch (lk)
     {
-      case 10:                        // '('
-        shiftT(10);                   // '('
+      case 15:                        // '('
+        shiftT(15);                   // '('
         try_Expression();
-        shiftT(11);                   // ')'
+        shiftT(16);                   // ')'
         break;
       case -3:
-      case 135386:                    // '@' NCName 'in'
+      case 155871:                    // '@' NCName 'in'
         try_InExpr();
         break;
       case -4:
-      case 94426:                     // '@' NCName '=~'
+      case 114911:                    // '@' NCName '=~'
         try_RegexExpr();
         break;
-      case 31:                        // 'exists'
+      case 36:                        // 'exists'
         try_ExistExpr();
         break;
       case -6:
-      case 90330:                     // '@' NCName '=&'
+      case 110815:                    // '@' NCName '=&'
         try_SubQueryExpr();
         break;
-      case 35:                        // 'isnull'
+      case 40:                        // 'isnull'
         try_IsnullExpr();
         break;
-      case 34:                        // 'isempty'
+      case 39:                        // 'isempty'
         try_IsemptyExpr();
         break;
       case -9:
@@ -1239,26 +1154,26 @@ function CMSParser(string, parsingEventHandler)
   {
     eventHandler.startNonterminal("CompExpr", e0);
     parse_Attribute();
-    lookahead1(21);                 // '!=' | '<' | '<=' | '=' | '>' | '>='
+    lookahead1(18);                 // '!=' | '<' | '<=' | '=' | '>' | '>='
     switch (l1)
     {
-      case 21:                        // '='
-        shift(21);                    // '='
+      case 26:                        // '='
+        shift(26);                    // '='
         break;
       case 7:                         // '!='
         shift(7);                     // '!='
         break;
-      case 24:                        // '>'
-        shift(24);                    // '>'
+      case 29:                        // '>'
+        shift(29);                    // '>'
         break;
-      case 19:                        // '<'
-        shift(19);                    // '<'
+      case 24:                        // '<'
+        shift(24);                    // '<'
         break;
-      case 25:                        // '>='
-        shift(25);                    // '>='
+      case 30:                        // '>='
+        shift(30);                    // '>='
         break;
       default:
-        shift(20);                    // '<='
+        shift(25);                    // '<='
     }
     parse_Value();
     eventHandler.endNonterminal("CompExpr", e0);
@@ -1267,26 +1182,26 @@ function CMSParser(string, parsingEventHandler)
   function try_CompExpr()
   {
     try_Attribute();
-    lookahead1(21);                 // '!=' | '<' | '<=' | '=' | '>' | '>='
+    lookahead1(18);                 // '!=' | '<' | '<=' | '=' | '>' | '>='
     switch (l1)
     {
-      case 21:                        // '='
-        shiftT(21);                   // '='
+      case 26:                        // '='
+        shiftT(26);                   // '='
         break;
       case 7:                         // '!='
         shiftT(7);                    // '!='
         break;
-      case 24:                        // '>'
-        shiftT(24);                   // '>'
+      case 29:                        // '>'
+        shiftT(29);                   // '>'
         break;
-      case 19:                        // '<'
-        shiftT(19);                   // '<'
+      case 24:                        // '<'
+        shiftT(24);                   // '<'
         break;
-      case 25:                        // '>='
-        shiftT(25);                   // '>='
+      case 30:                        // '>='
+        shiftT(30);                   // '>='
         break;
       default:
-        shiftT(20);                   // '<='
+        shiftT(25);                   // '<='
     }
     try_Value();
   }
@@ -1296,7 +1211,7 @@ function CMSParser(string, parsingEventHandler)
     eventHandler.startNonterminal("InExpr", e0);
     parse_Attribute();
     lookahead1(8);                  // 'in'
-    shift(33);                      // 'in'
+    shift(38);                      // 'in'
     parse_ValueList();
     eventHandler.endNonterminal("InExpr", e0);
   }
@@ -1305,7 +1220,7 @@ function CMSParser(string, parsingEventHandler)
   {
     try_Attribute();
     lookahead1(8);                  // 'in'
-    shiftT(33);                     // 'in'
+    shiftT(38);                     // 'in'
     try_ValueList();
   }
 
@@ -1314,7 +1229,7 @@ function CMSParser(string, parsingEventHandler)
     eventHandler.startNonterminal("RegexExpr", e0);
     parse_Attribute();
     lookahead1(7);                  // '=~'
-    shift(23);                      // '=~'
+    shift(28);                      // '=~'
     parse_ExpValue();
     eventHandler.endNonterminal("RegexExpr", e0);
   }
@@ -1323,7 +1238,7 @@ function CMSParser(string, parsingEventHandler)
   {
     try_Attribute();
     lookahead1(7);                  // '=~'
-    shiftT(23);                     // '=~'
+    shiftT(28);                     // '=~'
     try_ExpValue();
   }
 
@@ -1332,7 +1247,7 @@ function CMSParser(string, parsingEventHandler)
     eventHandler.startNonterminal("SubQueryExpr", e0);
     parse_Attribute();
     lookahead1(6);                  // '=&'
-    shift(22);                      // '=&'
+    shift(27);                      // '=&'
     parse_Query();
     eventHandler.endNonterminal("SubQueryExpr", e0);
   }
@@ -1341,49 +1256,49 @@ function CMSParser(string, parsingEventHandler)
   {
     try_Attribute();
     lookahead1(6);                  // '=&'
-    shiftT(22);                     // '=&'
+    shiftT(27);                     // '=&'
     try_Query();
   }
 
   function parse_ExistExpr()
   {
     eventHandler.startNonterminal("ExistExpr", e0);
-    shift(31);                      // 'exists'
+    shift(36);                      // 'exists'
     parse_Attribute();
     eventHandler.endNonterminal("ExistExpr", e0);
   }
 
   function try_ExistExpr()
   {
-    shiftT(31);                     // 'exists'
+    shiftT(36);                     // 'exists'
     try_Attribute();
   }
 
   function parse_IsnullExpr()
   {
     eventHandler.startNonterminal("IsnullExpr", e0);
-    shift(35);                      // 'isnull'
+    shift(40);                      // 'isnull'
     parse_Attribute();
     eventHandler.endNonterminal("IsnullExpr", e0);
   }
 
   function try_IsnullExpr()
   {
-    shiftT(35);                     // 'isnull'
+    shiftT(40);                     // 'isnull'
     try_Attribute();
   }
 
   function parse_IsemptyExpr()
   {
     eventHandler.startNonterminal("IsemptyExpr", e0);
-    shift(34);                      // 'isempty'
+    shift(39);                      // 'isempty'
     parse_Attribute();
     eventHandler.endNonterminal("IsemptyExpr", e0);
   }
 
   function try_IsemptyExpr()
   {
-    shiftT(34);                     // 'isempty'
+    shiftT(39);                     // 'isempty'
     try_Attribute();
   }
 
@@ -1391,44 +1306,44 @@ function CMSParser(string, parsingEventHandler)
   {
     eventHandler.startNonterminal("ValueList", e0);
     lookahead1(4);                  // '('
-    shift(10);                      // '('
+    shift(15);                      // '('
     parse_Value();
     for (;;)
     {
-      lookahead1(11);               // ')' | ','
-      if (l1 != 14)                 // ','
+      lookahead1(10);               // ')' | ','
+      if (l1 != 19)                 // ','
       {
         break;
       }
-      shift(14);                    // ','
+      shift(19);                    // ','
       parse_Value();
     }
-    shift(11);                      // ')'
+    shift(16);                      // ')'
     eventHandler.endNonterminal("ValueList", e0);
   }
 
   function try_ValueList()
   {
     lookahead1(4);                  // '('
-    shiftT(10);                     // '('
+    shiftT(15);                     // '('
     try_Value();
     for (;;)
     {
-      lookahead1(11);               // ')' | ','
-      if (l1 != 14)                 // ','
+      lookahead1(10);               // ')' | ','
+      if (l1 != 19)                 // ','
       {
         break;
       }
-      shiftT(14);                   // ','
+      shiftT(19);                   // ','
       try_Value();
     }
-    shiftT(11);                     // ')'
+    shiftT(16);                     // ')'
   }
 
   function parse_Value()
   {
     eventHandler.startNonterminal("Value", e0);
-    lookahead1(20);                 // IntegerLiteral | DecimalLiteral | StringLiteral | 'date' | 'false' | 'true'
+    lookahead1(17);                 // IntegerLiteral | DecimalLiteral | StringLiteral | 'date' | 'false' | 'true'
     switch (l1)
     {
       case 1:                         // IntegerLiteral
@@ -1440,7 +1355,7 @@ function CMSParser(string, parsingEventHandler)
       case 4:                         // StringLiteral
         parse_StrVal();
         break;
-      case 30:                        // 'date'
+      case 35:                        // 'date'
         parse_DateVal();
         break;
       default:
@@ -1451,7 +1366,7 @@ function CMSParser(string, parsingEventHandler)
 
   function try_Value()
   {
-    lookahead1(20);                 // IntegerLiteral | DecimalLiteral | StringLiteral | 'date' | 'false' | 'true'
+    lookahead1(17);                 // IntegerLiteral | DecimalLiteral | StringLiteral | 'date' | 'false' | 'true'
     switch (l1)
     {
       case 1:                         // IntegerLiteral
@@ -1463,7 +1378,7 @@ function CMSParser(string, parsingEventHandler)
       case 4:                         // StringLiteral
         try_StrVal();
         break;
-      case 30:                        // 'date'
+      case 35:                        // 'date'
         try_DateVal();
         break;
       default:
@@ -1499,17 +1414,17 @@ function CMSParser(string, parsingEventHandler)
   {
     eventHandler.startNonterminal("ExpValue", e0);
     parse_StrVal();
-    lookahead1(23);                 // ')' | '/i' | '/s' | '>' | 'and' | 'or'
-    if (l1 == 17                    // '/i'
-        || l1 == 18)                   // '/s'
+    lookahead1(20);                 // ')' | '/i' | '/s' | ']' | 'and' | 'or'
+    if (l1 == 22                    // '/i'
+        || l1 == 23)                   // '/s'
     {
       switch (l1)
       {
-        case 17:                      // '/i'
-          shift(17);                  // '/i'
+        case 22:                      // '/i'
+          shift(22);                  // '/i'
           break;
         default:
-          shift(18);                  // '/s'
+          shift(23);                  // '/s'
       }
     }
     eventHandler.endNonterminal("ExpValue", e0);
@@ -1518,17 +1433,17 @@ function CMSParser(string, parsingEventHandler)
   function try_ExpValue()
   {
     try_StrVal();
-    lookahead1(23);                 // ')' | '/i' | '/s' | '>' | 'and' | 'or'
-    if (l1 == 17                    // '/i'
-        || l1 == 18)                   // '/s'
+    lookahead1(20);                 // ')' | '/i' | '/s' | ']' | 'and' | 'or'
+    if (l1 == 22                    // '/i'
+        || l1 == 23)                   // '/s'
     {
       switch (l1)
       {
-        case 17:                      // '/i'
-          shiftT(17);                 // '/i'
+        case 22:                      // '/i'
+          shiftT(22);                 // '/i'
           break;
         default:
-          shiftT(18);                 // '/s'
+          shiftT(23);                 // '/s'
       }
     }
   }
@@ -1552,11 +1467,11 @@ function CMSParser(string, parsingEventHandler)
     eventHandler.startNonterminal("BoolVal", e0);
     switch (l1)
     {
-      case 41:                        // 'true'
-        shift(41);                    // 'true'
+      case 43:                        // 'true'
+        shift(43);                    // 'true'
         break;
       default:
-        shift(32);                    // 'false'
+        shift(37);                    // 'false'
     }
     eventHandler.endNonterminal("BoolVal", e0);
   }
@@ -1565,36 +1480,36 @@ function CMSParser(string, parsingEventHandler)
   {
     switch (l1)
     {
-      case 41:                        // 'true'
-        shiftT(41);                   // 'true'
+      case 43:                        // 'true'
+        shiftT(43);                   // 'true'
         break;
       default:
-        shiftT(32);                   // 'false'
+        shiftT(37);                   // 'false'
     }
   }
 
   function parse_DateVal()
   {
     eventHandler.startNonterminal("DateVal", e0);
-    shift(30);                      // 'date'
+    shift(35);                      // 'date'
     lookahead1(4);                  // '('
-    shift(10);                      // '('
+    shift(15);                      // '('
     lookahead1(0);                  // IntegerLiteral
     shift(1);                       // IntegerLiteral
     lookahead1(5);                  // ')'
-    shift(11);                      // ')'
+    shift(16);                      // ')'
     eventHandler.endNonterminal("DateVal", e0);
   }
 
   function try_DateVal()
   {
-    shiftT(30);                     // 'date'
+    shiftT(35);                     // 'date'
     lookahead1(4);                  // '('
-    shiftT(10);                     // '('
+    shiftT(15);                     // '('
     lookahead1(0);                  // IntegerLiteral
     shiftT(1);                      // IntegerLiteral
     lookahead1(5);                  // ')'
-    shiftT(11);                     // ')'
+    shiftT(16);                     // ')'
   }
 
   function shift(t)
@@ -1681,12 +1596,12 @@ function CMSParser(string, parsingEventHandler)
 
   function memoize(i, e, v)
   {
-    memo[(e << 2) + i] = v;
+    memo[(e << 1) + i] = v;
   }
 
   function memoized(i, e)
   {
-    var v = memo[(e << 2) + i];
+    var v = memo[(e << 1) + i];
     return typeof v != "undefined" ? v : 0;
   }
 
@@ -1766,10 +1681,10 @@ CMSParser.getTokenSet = function(tokenSetId)
 {
   var set = [];
   var s = tokenSetId < 0 ? - tokenSetId : CMSParser.INITIAL[tokenSetId] & 127;
-  for (var i = 0; i < 45; i += 32)
+  for (var i = 0; i < 47; i += 32)
   {
     var j = i;
-    var i0 = (i >> 5) * 92 + s - 1;
+    var i0 = (i >> 5) * 94 + s - 1;
     var f = CMSParser.EXPECTED[(i0 & 3) + CMSParser.EXPECTED[i0 >> 2]];
     for ( ; f != 0; f >>>= 1, ++j)
     {
@@ -1784,11 +1699,11 @@ CMSParser.getTokenSet = function(tokenSetId)
 
 CMSParser.MAP0 =
     [
-      /*   0 */ 47, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 1,
+      /*   0 */ 49, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 1,
       /*  36 */ 4, 1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 1, 1, 16, 17, 18, 1, 19,
-      /*  65 */ 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 1,
-      /*  92 */ 22, 1, 1, 21, 1, 23, 24, 25, 26, 27, 28, 29, 21, 30, 21, 21, 31, 32, 33, 34, 35, 21, 36, 37, 38, 39, 40, 21,
-      /* 120 */ 41, 42, 21, 43, 44, 45, 46, 1
+      /*  65 */ 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22,
+      /*  92 */ 23, 24, 1, 21, 1, 25, 26, 27, 28, 29, 30, 31, 21, 32, 21, 21, 33, 34, 35, 36, 37, 21, 38, 39, 40, 41, 42,
+      /* 119 */ 21, 43, 44, 21, 45, 46, 47, 48, 1
     ];
 
 CMSParser.MAP1 =
@@ -1798,20 +1713,20 @@ CMSParser.MAP1 =
       /*  42 */ 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214,
       /*  63 */ 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214,
       /*  84 */ 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214, 214,
-      /* 105 */ 214, 214, 214, 247, 261, 385, 277, 331, 338, 354, 370, 314, 314, 314, 306, 432, 424, 432, 424, 432, 432,
-      /* 126 */ 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 401, 401, 401, 401, 401, 401, 401,
-      /* 147 */ 417, 432, 432, 432, 432, 432, 432, 432, 432, 292, 314, 314, 315, 313, 314, 314, 432, 432, 432, 432, 432,
-      /* 168 */ 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 314, 314, 314, 314, 314, 314, 314, 314,
+      /* 105 */ 214, 214, 214, 247, 261, 416, 277, 331, 369, 385, 401, 314, 314, 314, 306, 353, 345, 353, 345, 353, 353,
+      /* 126 */ 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 432, 432, 432, 432, 432, 432, 432,
+      /* 147 */ 338, 353, 353, 353, 353, 353, 353, 353, 353, 292, 314, 314, 315, 313, 314, 314, 353, 353, 353, 353, 353,
+      /* 168 */ 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 314, 314, 314, 314, 314, 314, 314, 314,
       /* 189 */ 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314, 314,
-      /* 210 */ 314, 314, 314, 431, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432,
-      /* 231 */ 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 432, 314, 47, 0, 0, 0, 0, 0, 0, 0, 0,
+      /* 210 */ 314, 314, 314, 352, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353,
+      /* 231 */ 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 353, 314, 49, 0, 0, 0, 0, 0, 0, 0, 0,
       /* 256 */ 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 1, 1,
       /* 289 */ 16, 17, 18, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 21, 21, 1, 1, 1, 1, 1, 1, 1, 12, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-      /* 323 */ 1, 1, 1, 1, 1, 1, 1, 12, 19, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 1, 22, 1,
-      /* 352 */ 1, 21, 1, 23, 24, 25, 26, 27, 28, 29, 21, 30, 21, 21, 31, 32, 33, 34, 35, 21, 36, 37, 38, 39, 40, 21, 41,
-      /* 379 */ 42, 21, 43, 44, 45, 46, 1, 2, 3, 1, 4, 1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 12, 12, 12, 12, 12, 12, 12, 12,
-      /* 409 */ 12, 12, 12, 12, 12, 12, 12, 12, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 1, 21, 21, 21, 21,
-      /* 436 */ 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21
+      /* 323 */ 1, 1, 1, 1, 1, 1, 1, 12, 19, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
+      /* 352 */ 1, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
+      /* 379 */ 21, 22, 23, 24, 1, 21, 1, 25, 26, 27, 28, 29, 30, 31, 21, 32, 21, 21, 33, 34, 35, 36, 37, 21, 38, 39, 40,
+      /* 406 */ 41, 42, 21, 43, 44, 21, 45, 46, 47, 48, 1, 2, 3, 1, 4, 1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 12, 12, 12, 12,
+      /* 436 */ 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12
     ];
 
 CMSParser.MAP2 =
@@ -1822,84 +1737,87 @@ CMSParser.MAP2 =
 CMSParser.INITIAL =
     [
       /*  0 */ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
-      /* 29 */ 30, 31
+      /* 29 */ 30, 31, 32
     ];
 
 CMSParser.TRANSITION =
     [
-      /*    0 */ 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 768,
-      /*   21 */ 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 876, 865, 768, 769, 769, 769, 769, 769,
-      /*   42 */ 769, 769, 769, 769, 769, 769, 1096, 769, 1094, 769, 778, 769, 769, 1095, 769, 769, 769, 769, 769, 769, 769,
-      /*   63 */ 769, 901, 902, 1198, 787, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 797, 807,
-      /*   84 */ 860, 769, 769, 873, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 768, 769, 769, 1095, 769,
-      /*  105 */ 769, 769, 769, 769, 769, 769, 769, 1210, 1208, 1208, 884, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769,
-      /*  126 */ 769, 769, 1002, 949, 951, 894, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 990, 769,
-      /*  147 */ 769, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 910, 768, 769, 769, 932,
-      /*  168 */ 769, 769, 769, 769, 769, 769, 769, 769, 769, 984, 989, 1220, 768, 769, 769, 769, 769, 769, 769, 769, 769,
-      /*  189 */ 769, 769, 769, 769, 769, 769, 933, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769,
-      /*  210 */ 812, 942, 768, 1388, 960, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 770, 769, 768, 769, 769,
-      /*  231 */ 1095, 769, 769, 769, 769, 769, 769, 769, 769, 959, 769, 847, 933, 768, 852, 769, 769, 769, 968, 977, 1096,
-      /*  252 */ 769, 769, 769, 769, 769, 1268, 924, 1083, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 789,
-      /*  273 */ 769, 1346, 1068, 768, 769, 998, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 1295, 1010, 1258, 768,
-      /*  293 */ 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 1018, 1278, 1024, 768, 769, 769, 769, 769, 769,
-      /*  314 */ 769, 769, 769, 769, 769, 769, 1109, 934, 769, 933, 768, 769, 769, 769, 769, 968, 977, 1096, 769, 769, 769,
-      /*  335 */ 769, 1109, 934, 769, 933, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769,
-      /*  356 */ 1034, 769, 769, 1095, 769, 769, 769, 769, 769, 769, 769, 769, 1109, 934, 1173, 799, 768, 1043, 769, 769,
-      /*  376 */ 769, 968, 977, 1096, 769, 769, 769, 769, 1109, 934, 769, 933, 768, 769, 769, 1095, 769, 968, 977, 1096,
-      /*  396 */ 769, 769, 769, 769, 1109, 934, 920, 933, 768, 769, 769, 769, 769, 968, 977, 1096, 769, 769, 769, 769, 1109,
-      /*  417 */ 934, 817, 933, 768, 769, 769, 915, 769, 968, 977, 1096, 769, 769, 769, 769, 1109, 934, 1026, 1051, 768,
-      /*  437 */ 769, 769, 769, 1140, 1059, 1076, 1096, 769, 769, 769, 769, 1109, 934, 822, 933, 768, 769, 769, 1095, 769,
-      /*  457 */ 968, 977, 1096, 769, 769, 769, 769, 1109, 934, 769, 933, 768, 769, 769, 1322, 769, 769, 769, 769, 769, 769,
-      /*  478 */ 769, 769, 1109, 1104, 1111, 1119, 768, 1127, 1238, 769, 1366, 769, 769, 769, 769, 769, 769, 769, 1109, 934,
-      /*  498 */ 769, 933, 768, 769, 769, 769, 1342, 769, 1377, 1138, 769, 769, 769, 769, 1109, 934, 1064, 933, 768, 769,
-      /*  518 */ 769, 769, 1148, 1150, 769, 769, 769, 769, 769, 769, 1109, 934, 769, 1158, 1166, 769, 769, 1095, 1181, 1196,
-      /*  538 */ 769, 769, 769, 769, 769, 769, 1109, 934, 1188, 886, 768, 1206, 769, 1218, 769, 769, 769, 769, 769, 769,
-      /*  558 */ 769, 769, 1109, 934, 769, 933, 768, 769, 769, 769, 769, 769, 842, 769, 769, 769, 769, 769, 1109, 934, 769,
-      /*  579 */ 933, 1228, 769, 1236, 1095, 769, 769, 769, 769, 769, 769, 769, 769, 1109, 934, 1291, 933, 768, 769, 1130,
-      /*  599 */ 769, 769, 1336, 969, 769, 769, 769, 769, 769, 1109, 934, 827, 933, 768, 769, 769, 1095, 1246, 769, 1254,
-      /*  619 */ 1266, 769, 769, 769, 769, 1109, 934, 769, 933, 768, 1318, 769, 1401, 837, 779, 769, 769, 769, 769, 769,
-      /*  639 */ 769, 1109, 934, 769, 933, 768, 1276, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 1109, 934, 769, 933,
-      /*  660 */ 768, 769, 832, 1035, 769, 769, 769, 769, 769, 769, 769, 769, 1109, 934, 769, 933, 768, 769, 769, 769, 769,
-      /*  681 */ 769, 769, 1090, 769, 769, 769, 769, 769, 769, 769, 1286, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769,
-      /*  702 */ 769, 769, 769, 769, 1303, 1313, 1330, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 1354,
-      /*  722 */ 1355, 1305, 768, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 1363, 769, 769,
-      /*  743 */ 1374, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769, 1385, 1396, 769, 769, 769, 769, 769, 769, 769, 769,
-      /*  764 */ 769, 769, 769, 769, 33, 0, 0, 0, 0, 0, 0, 0, 0, 55, 640, 0, 0, 0, 0, 0, 0, 0, 86, 0, 1152, 0, 0, 0, 0, 0,
-      /*  794 */ 0, 34, 35, 0, 37, 0, 0, 0, 0, 0, 0, 39, 544, 37, 0, 37, 37, 37, 0, 0, 0, 0, 45, 0, 0, 0, 0, 47, 0, 0, 0, 0,
-      /*  826 */ 48, 0, 0, 0, 0, 49, 0, 0, 0, 0, 70, 0, 0, 0, 0, 77, 0, 0, 0, 0, 89, 0, 0, 0, 0, 302, 0, 0, 0, 0, 429, 302,
-      /*  858 */ 0, 0, 33, 2944, 0, 0, 1280, 0, 0, 0, 0, 896, 50, 50, 0, 0, 0, 2944, 0, 0, 0, 0, 0, 50, 0, 0, 0, 1408, 0, 0,
-      /*  888 */ 0, 0, 0, 0, 40, 544, 1536, 0, 1536, 1536, 1536, 0, 1536, 0, 0, 0, 1152, 0, 0, 0, 0, 1152, 56, 0, 56, 56,
-      /*  914 */ 56, 0, 0, 0, 0, 3584, 0, 0, 0, 42, 0, 0, 0, 0, 0, 2611, 0, 0, 2176, 0, 0, 0, 0, 0, 0, 0, 544, 0, 2105, 0,
-      /*  944 */ 2105, 2105, 2105, 2048, 2048, 0, 0, 0, 1536, 1536, 0, 0, 0, 0, 1536, 257, 0, 0, 0, 0, 0, 0, 0, 1792, 81, 0,
-      /*  970 */ 0, 0, 0, 0, 0, 0, 4096, 87, 0, 0, 0, 0, 0, 91, 0, 0, 0, 1920, 0, 1920, 0, 0, 0, 0, 0, 0, 0, 1664, 0, 1024,
-      /* 1000 */ 2688, 3328, 0, 0, 0, 0, 0, 1536, 0, 0, 3200, 0, 3200, 0, 0, 3252, 0, 3200, 0, 0, 3456, 0, 3456, 0, 0, 3456,
-      /* 1026 */ 0, 0, 0, 0, 0, 0, 53, 0, 60, 0, 0, 0, 0, 0, 0, 0, 4736, 0, 0, 64, 0, 0, 0, 67, 68, 0, 53, 0, 0, 0, 0, 0,
-      /* 1058 */ 544, 81, 0, 3968, 0, 5376, 0, 0, 0, 43, 0, 0, 0, 0, 0, 2875, 2875, 0, 87, 0, 4224, 0, 0, 0, 91, 0, 0, 0,
-      /* 1086 */ 2560, 2560, 2611, 2611, 0, 0, 0, 4480, 0, 0, 0, 0, 33, 0, 0, 0, 0, 0, 36, 0, 0, 0, 0, 0, 544, 0, 0, 0, 0,
-      /* 1115 */ 0, 0, 54, 0, 0, 54, 0, 0, 0, 36, 36, 544, 0, 0, 65, 0, 0, 0, 0, 0, 71, 2432, 0, 0, 4608, 0, 0, 0, 0, 0, 0,
-      /* 1146 */ 79, 0, 0, 5248, 0, 0, 0, 0, 0, 0, 85, 0, 0, 58, 0, 0, 0, 0, 0, 544, 33, 0, 0, 4352, 0, 0, 61, 0, 0, 39, 41,
-      /* 1177 */ 0, 0, 0, 39, 4864, 0, 0, 0, 0, 0, 80, 0, 0, 40, 0, 0, 0, 0, 40, 0, 82, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 63, 0,
-      /* 1209 */ 0, 0, 0, 0, 0, 1408, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 1920, 0, 33, 0, 0, 0, 0, 0, 0, 5120, 69, 0, 0, 0, 0,
-      /* 1241 */ 0, 0, 0, 2304, 0, 0, 0, 75, 0, 0, 0, 0, 4992, 0, 3840, 0, 88, 0, 0, 0, 0, 0, 3252, 3252, 0, 92, 0, 0, 0, 0,
-      /* 1271 */ 0, 0, 0, 2560, 0, 62, 0, 0, 0, 0, 0, 0, 0, 3456, 0, 0, 0, 5504, 5504, 5504, 0, 0, 0, 44, 0, 0, 0, 0, 0,
-      /* 1300 */ 3200, 0, 0, 0, 38, 0, 0, 0, 0, 0, 0, 5760, 0, 38, 0, 38, 38, 38, 0, 0, 0, 66, 0, 0, 0, 0, 0, 3712, 0, 0,
-      /* 1330 */ 33, 0, 0, 0, 0, 5632, 0, 0, 0, 83, 0, 84, 0, 0, 0, 76, 0, 0, 0, 0, 0, 2816, 0, 0, 0, 5760, 0, 0, 0, 0, 0,
-      /* 1361 */ 0, 0, 33, 0, 3072, 0, 0, 0, 0, 0, 78, 0, 0, 0, 0, 3072, 0, 0, 0, 0, 0, 90, 0, 0, 0, 768, 0, 0, 0, 0, 0, 0,
-      /* 1393 */ 429, 0, 0, 768, 0, 768, 768, 768, 0, 0, 0, 73, 0, 0, 74, 0
+      /*    0 */ 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1432,
+      /*   21 */ 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 800, 827, 1432, 949, 949, 949, 949, 949,
+      /*   42 */ 949, 949, 949, 949, 949, 949, 1431, 949, 1432, 949, 811, 949, 949, 1432, 949, 949, 949, 949, 949, 949, 949,
+      /*   63 */ 949, 1333, 949, 841, 1451, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 950, 803, 821,
+      /*   84 */ 835, 949, 1358, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1432, 949, 949, 1432, 949,
+      /*  105 */ 949, 949, 949, 949, 949, 949, 949, 1195, 1194, 949, 1060, 1432, 949, 949, 949, 949, 949, 949, 949, 949,
+      /*  125 */ 949, 949, 949, 1206, 849, 852, 860, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949,
+      /*  146 */ 1347, 949, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 971, 868, 1432, 949,
+      /*  166 */ 1055, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 887, 949, 960, 1432, 949, 949, 949, 949, 949, 949,
+      /*  187 */ 949, 949, 949, 949, 949, 949, 949, 949, 949, 910, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949,
+      /*  208 */ 949, 949, 922, 929, 1432, 937, 1399, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1101, 949,
+      /*  228 */ 1432, 949, 949, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 948, 949, 958, 949, 910, 968, 949, 949, 990,
+      /*  249 */ 949, 979, 1429, 949, 949, 949, 949, 949, 1319, 987, 998, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 949,
+      /*  270 */ 949, 949, 1111, 949, 1006, 1477, 1432, 1296, 1017, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1073,
+      /*  290 */ 899, 894, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1425, 1418, 879, 1432, 949,
+      /*  310 */ 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1181, 902, 949, 949, 910, 949, 949, 949, 990, 949, 979,
+      /*  331 */ 1429, 949, 949, 949, 949, 1181, 902, 949, 949, 910, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949,
+      /*  352 */ 949, 949, 949, 1026, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1040,
+      /*  373 */ 949, 949, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1050, 1183, 1432, 949, 949, 949, 949,
+      /*  393 */ 949, 949, 949, 949, 949, 949, 949, 1181, 902, 1068, 1141, 910, 874, 1081, 949, 1091, 949, 979, 1429, 949,
+      /*  413 */ 949, 949, 949, 1181, 902, 949, 949, 910, 949, 949, 1432, 990, 949, 979, 1429, 949, 949, 949, 949, 1181,
+      /*  433 */ 902, 949, 949, 910, 949, 1109, 949, 990, 949, 979, 1429, 949, 949, 949, 949, 1181, 902, 1119, 949, 910,
+      /*  453 */ 949, 949, 1129, 990, 949, 979, 1429, 949, 949, 949, 949, 1181, 902, 949, 1268, 910, 949, 949, 949, 1032,
+      /*  473 */ 1140, 1149, 1429, 949, 949, 949, 949, 1181, 902, 1157, 949, 910, 949, 949, 1432, 990, 949, 979, 1429, 949,
+      /*  493 */ 949, 949, 949, 1181, 902, 949, 949, 910, 949, 949, 949, 949, 1167, 949, 949, 949, 949, 949, 949, 1181,
+      /*  513 */ 1177, 949, 1242, 910, 949, 1191, 949, 1203, 949, 949, 949, 949, 949, 949, 949, 1181, 902, 949, 949, 910,
+      /*  533 */ 949, 949, 1308, 949, 949, 1286, 1447, 949, 949, 949, 949, 1181, 902, 949, 949, 910, 949, 1214, 949, 949,
+      /*  553 */ 1132, 949, 949, 949, 949, 949, 949, 1181, 902, 949, 1121, 1224, 949, 949, 1432, 1097, 1463, 1264, 949, 949,
+      /*  573 */ 949, 949, 949, 1181, 902, 1232, 1367, 910, 949, 949, 1250, 949, 949, 949, 949, 949, 949, 949, 949, 1181,
+      /*  593 */ 902, 949, 949, 910, 949, 949, 949, 949, 949, 1009, 949, 949, 949, 949, 949, 1181, 902, 949, 949, 910, 1258,
+      /*  614 */ 949, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 1181, 902, 949, 949, 910, 949, 1276, 949, 813, 1216,
+      /*  634 */ 949, 1284, 949, 949, 949, 949, 1181, 902, 1294, 949, 910, 949, 949, 1304, 1237, 949, 1385, 1316, 949, 949,
+      /*  654 */ 949, 949, 1181, 902, 949, 949, 910, 949, 949, 1327, 1345, 1355, 1366, 949, 949, 949, 949, 949, 1181, 902,
+      /*  674 */ 949, 949, 910, 949, 949, 1169, 949, 949, 949, 949, 949, 949, 949, 949, 1181, 902, 949, 949, 910, 949, 1159,
+      /*  695 */ 949, 949, 1381, 949, 949, 949, 949, 949, 949, 1181, 902, 949, 949, 910, 949, 949, 949, 949, 949, 949, 1403,
+      /*  716 */ 949, 949, 949, 949, 949, 949, 1042, 1375, 1432, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949,
+      /*  737 */ 1018, 940, 1393, 1411, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1440, 949, 1083, 1432,
+      /*  757 */ 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 1459, 949, 1337, 949, 949, 949,
+      /*  778 */ 949, 949, 949, 949, 949, 949, 949, 912, 914, 1471, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949, 949,
+      /*  799 */ 949, 0, 0, 47, 0, 0, 0, 0, 0, 38, 0, 38, 0, 640, 0, 0, 0, 0, 0, 0, 0, 83, 38, 38, 38, 0, 0, 38, 0, 0, 0,
+      /*  830 */ 47, 0, 896, 0, 47, 0, 34, 3584, 0, 0, 1920, 0, 0, 0, 50, 0, 0, 50, 0, 0, 0, 2176, 2176, 0, 0, 0, 2176,
+      /*  857 */ 2176, 0, 2176, 2176, 2176, 2176, 0, 0, 2176, 0, 2176, 52, 52, 52, 0, 0, 52, 0, 0, 0, 60, 61, 0, 0, 0, 0,
+      /*  883 */ 4096, 0, 4096, 0, 0, 0, 2560, 0, 2560, 0, 2560, 0, 0, 0, 3889, 0, 0, 0, 3889, 0, 0, 0, 0, 0, 545, 0, 0,
+      /*  910 */ 545, 34, 0, 0, 0, 0, 0, 0, 0, 768, 0, 768, 0, 42, 0, 0, 0, 2741, 0, 2741, 2741, 2741, 2688, 0, 2741, 0,
+      /*  936 */ 2688, 0, 0, 426, 0, 0, 0, 0, 0, 39, 0, 39, 257, 0, 0, 0, 0, 0, 0, 0, 0, 38, 0, 299, 0, 0, 0, 0, 0, 0, 0,
+      /*  967 */ 2560, 0, 426, 299, 0, 0, 0, 0, 0, 52, 0, 52, 0, 88, 0, 0, 0, 0, 0, 93, 0, 0, 3248, 0, 0, 0, 0, 0, 82, 0, 0,
+      /*  998 */ 3200, 0, 3200, 3248, 0, 3200, 0, 3248, 0, 0, 3456, 0, 0, 0, 0, 0, 91, 0, 0, 3968, 0, 0, 0, 0, 0, 0, 0, 39,
+      /* 1026 */ 0, 4224, 4224, 0, 0, 4224, 0, 0, 0, 80, 0, 82, 4608, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 5760, 4352, 0, 0, 0,
+      /* 1054 */ 4352, 0, 0, 0, 0, 2816, 0, 0, 0, 0, 2048, 0, 2048, 0, 40, 0, 0, 0, 40, 0, 0, 0, 0, 3840, 0, 3840, 0, 0, 63,
+      /* 1083 */ 0, 0, 0, 0, 0, 0, 0, 6016, 76, 0, 0, 0, 0, 82, 0, 0, 0, 81, 0, 0, 0, 0, 51, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0,
+      /* 1116 */ 0, 35, 36, 0, 44, 0, 0, 0, 0, 0, 0, 57, 0, 0, 0, 4480, 0, 0, 0, 0, 0, 1792, 0, 86, 5632, 0, 0, 0, 0, 0, 0,
+      /* 1147 */ 0, 40, 0, 88, 4864, 0, 0, 0, 0, 93, 0, 45, 0, 0, 0, 0, 0, 0, 67, 0, 0, 1280, 0, 0, 0, 0, 0, 0, 74, 0, 37,
+      /* 1178 */ 0, 0, 0, 0, 545, 0, 0, 0, 0, 0, 0, 0, 4352, 0, 0, 2944, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 77, 0, 79, 0, 0, 0,
+      /* 1209 */ 0, 0, 2176, 0, 0, 0, 65, 0, 0, 0, 0, 0, 0, 85, 0, 545, 34, 0, 0, 4992, 0, 0, 59, 41, 0, 0, 0, 41, 0, 0, 0,
+      /* 1240 */ 0, 5376, 0, 0, 0, 37, 56, 0, 56, 37, 69, 0, 0, 0, 0, 0, 0, 75, 5504, 0, 0, 0, 0, 62, 0, 0, 0, 89, 0, 0, 0,
+      /* 1271 */ 0, 55, 0, 55, 0, 0, 66, 3072, 0, 0, 0, 0, 68, 0, 4736, 0, 0, 0, 0, 0, 0, 92, 0, 0, 46, 0, 0, 0, 0, 0, 0,
+      /* 1302 */ 1024, 3328, 0, 34, 0, 71, 0, 0, 0, 0, 72, 0, 0, 0, 1408, 0, 94, 0, 0, 0, 0, 0, 3200, 0, 0, 0, 70, 0, 0, 0,
+      /* 1332 */ 73, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 3712, 0, 0, 0, 78, 0, 0, 0, 0, 0, 0, 2304, 0, 0, 0, 84, 0, 0, 0, 0, 0,
+      /* 1363 */ 3584, 0, 0, 87, 0, 0, 0, 0, 0, 0, 0, 41, 5760, 5760, 5760, 0, 0, 5760, 0, 0, 0, 1536, 0, 0, 0, 0, 90, 0, 0,
+      /* 1392 */ 0, 39, 39, 39, 0, 0, 39, 0, 0, 0, 2432, 0, 0, 0, 0, 0, 5120, 0, 0, 0, 34, 0, 0, 0, 0, 5888, 0, 0, 0, 4096,
+      /* 1422 */ 0, 0, 4096, 0, 0, 0, 4096, 0, 0, 0, 0, 34, 0, 0, 0, 0, 0, 0, 0, 6016, 0, 0, 0, 0, 6016, 0, 0, 0, 5248, 0,
+      /* 1452 */ 0, 0, 0, 50, 0, 50, 0, 0, 34, 0, 3712, 0, 0, 0, 0, 1664, 0, 0, 0, 768, 768, 768, 0, 0, 768, 0, 0, 0, 3510,
+      /* 1481 */ 0, 0, 0, 3510
     ];
 
 CMSParser.EXPECTED =
     [
-      /*   0 */ 46, 50, 160, 54, 58, 62, 66, 70, 90, 74, 103, 167, 172, 83, 87, 102, 93, 113, 107, 113, 111, 122, 98, 142,
-      /*  24 */ 142, 119, 142, 126, 130, 134, 137, 115, 170, 79, 143, 141, 96, 77, 121, 148, 152, 143, 156, 144, 158, 164,
-      /*  46 */ 2, 8, 16, 256, 1024, 2048, 4194304, 8388608, 67110912, 16793600, 525320, 67113216, 16793600, 2592,
-      /*  60 */ 150996992, 805306368, 1073741846, 54001792, -2080373504, 151390208, 109088, -2080373504, 109088, 633376,
-      /*  70 */ 633440, 66617472, 200853632, 8, 512, 0, 134217728, 0, 64, 0, 0, 48, 256, 0x80000000, 0, 393216, 8192, 65536,
-      /*  88 */ 0, 12582912, 16, 4194304, 8388608, 0, 0, 1073741824, 0, 12, 0, 0, 16, 0, 134217728, 268435456, 536870912, 0,
-      /* 106 */ 0, 16, 536870912, 1073741824, 0, 16, 536870912, 0, 0x80000000, 0, 0, 0, 2, 2, 4096, 0, 0, 0, 16,
-      /* 125 */ 0x80000000, 4096, 2048, 128, 304, 513, 0, 12, 128, 2048, 76, 3072, 3072, 2, 4226, 0, 512, 0, 0, 0, 0, 1, 0,
-      /* 148 */ 32, 256, 0, 1, 512, 0, 12, 64, 512, 0, 4, 8, 0, 0, 67109120, 18432, 4, 8, 0, 4, 6, 1073741824, 0, 2048, 0,
-      /* 173 */ 128, 1048576, 33554432
+      /*   0 */ 47, 59, 133, 63, 67, 71, 75, 79, 83, 87, 148, 105, 93, 97, 52, 111, 103, 52, 112, 109, 116, 55, 139, 53, 54,
+      /*  25 */ 99, 54, 120, 141, 124, 127, 131, 89, 137, 151, 54, 54, 145, 156, 54, 145, 152, 54, 162, 160, 50, 163, 2, 8,
+      /*  49 */ 16, 256, 0, 0, 16, 0, 0, 0, 0, 16, 32768, 65536, 134217728, 268435456, 537395200, 16809992, 537395200,
+      /*  66 */ 81952, 65536, 22, 1728053376, -2147467776, 12648448, 3489824, -2147336704, 3489824, 20267040, 3489824,
+      /*  77 */ 20267040, 2131755136, -2147435008, 20267104, -2147435008, 2132344960, 8, 16, 134217728, 268435456, 0, 16384,
+      /*  89 */ 0, 0, 64, 0, 1073741824, 15872, 12582912, 262144, 2097152, 402653184, 0, 0, 64, 16384, 6144, 8192, 0, 0,
+      /* 107 */ 128, 33554432, 4096, 8192, 0, 0, 512, 1024, 2048, 0, 16, 0, 1024, 16384, 8192, 1030, 2088, 0, 12288, 12288,
+      /* 127 */ 12289, 64, 400, 12289, 912, 17478, 0, 0, 589824, -2147418112, 8192, 4, 1024, 0, 0, 0, 1030, 8192, 16, 384,
+      /* 147 */ 512, 0, 4, 6, 0, 8, 32, 2048, 0, 4, 8, 32, 2048, 32, 0, 16, 128, 256, 0, 128
     ];
 
 CMSParser.TOKEN =
@@ -1913,6 +1831,11 @@ CMSParser.TOKEN =
       "'!'",
       "'!='",
       "'$'",
+      "'$avg'",
+      "'$count'",
+      "'$max'",
+      "'$min'",
+      "'$sum'",
       "'&&'",
       "'('",
       "')'",
@@ -1931,20 +1854,17 @@ CMSParser.TOKEN =
       "'>'",
       "'>='",
       "'@'",
+      "'['",
+      "']'",
       "'and'",
-      "'avg'",
-      "'count'",
       "'date'",
       "'exists'",
       "'false'",
       "'in'",
       "'isempty'",
       "'isnull'",
-      "'max'",
-      "'min'",
       "'not'",
       "'or'",
-      "'sum'",
       "'true'",
       "'{'",
       "'||'",
