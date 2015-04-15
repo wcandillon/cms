@@ -1,0 +1,24 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "JSONiqParser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wcandillon/cms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wcandillon/cms/issues"
+  },
+  "homepage": "https://github.com/wcandillon/cms",
+  "devDependencies": {
+    "form-data": "^0.2.0",
+    "q": "^1.2.0",
+    "request": "^2.55.0"
+  }
+}

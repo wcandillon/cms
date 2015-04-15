@@ -1,5 +1,5 @@
-<?xqlint
-var JSONiqParser = exports.JSONiqParser = function JSONiqParser(string, parsingEventHandler)
+<?cms
+var CMSParser = exports.CMSParser = function CMSParser(string, parsingEventHandler)
 {
   init(string, parsingEventHandler);
 ?>
@@ -12,8 +12,9 @@ IntersectionPath
 PrimaryPath
           ::= '(' Path ')'
             | QueryNode (('.' | '+.' | '.+') PrimaryPath)*
+          /* ws: explicit */
 QueryNode
-          ::= (TypeCast)? NodeName (Filter)? (Aggregation)? (Projection)?
+          ::= TypeCast? NodeName Filter? Aggregation? Projection?
 NodeName
           ::= NCName ('!' NCName)?
 TypeCast
