@@ -1,0 +1,144 @@
+<?xqlint
+var JSONiqParser = exports.JSONiqParser = function JSONiqParser(string, parsingEventHandler)
+{
+  init(string, parsingEventHandler);
+?>
+
+Query     ::= Path EOF
+Path      ::= UnionPath
+UnionPath ::= IntersectionPath ('||' IntersectionPath)*
+IntersectionPath
+          ::= PrimaryPath ('&&' PrimaryPath)*
+PrimaryPath
+          ::= '(' Path ')'
+            | QueryNode (('.' | '+.' | '.+') PrimaryPath)*
+QueryNode
+          ::= (TypeCast)? NodeName (Filter)? (Aggregation)? (Projection)?
+NodeName
+          ::= NCName ('!' NCName)?
+TypeCast
+          ::= '<' TypeName (',' TypeName)* '>'
+TypeName
+          ::= NCName
+Aggregation
+          ::= Group Filter?
+Group
+          ::= '<' AttributeList '>'
+Filter
+          ::= '<' Expression '>'
+Projection
+          ::=    '{' ('*' | AttributeList) '}'
+
+AttributeList
+          ::= Attribute (',' Attribute)*
+
+Attribute
+          ::= SearchAttr | AggregateAttr
+
+SearchAttr
+    ::=    '@' AttrName ('.' '$' AttrName)*
+
+AggregateAttr
+    ::=    '$' AggFunc '(' SearchAttr? ')'
+
+AttrName
+    ::=    NCName
+
+AggFunc
+    ::=   'min' | 'max' | 'avg' | 'sum' | 'count'
+
+//// expression
+Expression
+    ::=    OrExpr
+
+OrExpr
+    ::=    AndExpr ('or' AndExpr)*
+
+AndExpr
+    ::=    NotExpr ('and' NotExpr)*
+
+NotExpr
+    ::=    'not'? PrimaryExpr
+
+PrimaryExpr
+    ::=    '(' Expression ')'
+    |    CompExpr
+    |    InExpr
+    |    RegexExpr
+    |    ExistExpr
+    |    SubQueryExpr
+    |    IsnullExpr
+    |    IsemptyExpr
+
+CompExpr
+    ::=    Attribute ('=' | '!=' | '>' | '<' | '>=' | '<=') Value
+
+InExpr
+    ::=    Attribute 'in' ValueList
+
+RegexExpr
+    ::=    Attribute '=~' ExpValue
+
+SubQueryExpr
+    ::=    Attribute '=&' Query
+
+ExistExpr
+    ::=    'exists' Attribute
+
+IsnullExpr
+    ::=    'isnull' Attribute
+
+IsemptyExpr
+    ::=    'isempty' Attribute
+
+ValueList
+    ::=    '(' Value (',' Value)* ')'
+
+Value
+    ::=    IntVal
+    |    DoubleVal
+    |    StrVal
+    |    BoolVal
+    |    DateVal
+
+IntVal
+    ::=    IntegerLiteral
+
+DoubleVal
+    ::=    DecimalLiteral
+
+ExpValue
+    ::=  StrVal ('/i' | '/s')?
+
+StrVal
+    ::=    StringLiteral
+
+BoolVal
+    ::= 'true' | 'false'
+
+DateVal
+    ::=    'date' '(' IntegerLiteral ')'
+<?TOKENS?>
+
+IntegerLiteral
+         ::= Digits
+DecimalLiteral
+         ::= '.' Digits
+           | Digits '.' [0-9]*
+          /* ws: explicit */
+Digits   ::= [0-9]+
+Name     ::= NameStartChar NameChar*
+NameStartChar
+         ::= [:A-Z_a-z#x00C0-#x00D6#x00D8-#x00F6#x00F8-#x02FF#x0370-#x037D#x037F-#x1FFF#x200C-#x200D#x2070-#x218F#x2C00-#x2FEF#x3001-#xD7FF#xF900-#xFDCF#xFDF0-#xFFFD#x10000-#xEFFFF]
+NameChar ::= NameStartChar
+           | [-.0-9#x00B7#x0300-#x036F#x203F-#x2040]
+NCName   ::= Name - ( Char* (':' | '.') Char* )
+Char     ::= [#x0009#x000A#x000D#x0020-#xD7FF#xE000-#xFFFD#x10000-#x10FFFF]
+StringLiteral
+         ::= '"' ( JSONPredefinedCharRef | JSONCharRef | [^"\] )* '"'
+          /* ws: explicit */
+JSONPredefinedCharRef
+         ::= '\' ( '\' | '/' | '"' | "'" | 'b' | 'f' | 'n' | 'r' | 't' )
+                   /* ws: explicit */
+JSONCharRef  ::= '\' 'u' [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]
+EOF      ::= $
