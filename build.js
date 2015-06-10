@@ -8,7 +8,7 @@ var promises = [];
 var grammars = [{
     source: 'CMSParser.ebnf',
     destination: 'CMSParser.js',
-    command: '-ll 3 -backtrack -tree -javascript -a cms',
+    command: '-ll 2 -tree -javascript -a cms',
     tz: '-60'
 }];
 
@@ -36,5 +36,8 @@ grammars.forEach(function(parser){
 });
 Q.all(promises)
     .then(function(){
-        console.log(done);
+        console.log('done');
+    })
+    .catch(function(error){
+        console.error(error);
     });

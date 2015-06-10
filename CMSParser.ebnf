@@ -11,8 +11,7 @@ IntersectionPath
           ::= PrimaryPath ('&&' PrimaryPath)*
 PrimaryPath
           ::= '(' Path ')'
-            | QueryNode (('.' | '+.' | '.+') PrimaryPath)*
-          /* ws: explicit */
+            | QueryNode (('.' | '+.' | '.+') ('(' Path ')' | QueryNode))*
 QueryNode
           ::= TypeCast? NodeName Filter? Aggregation? Projection?
 NodeName
@@ -37,76 +36,71 @@ Attribute
           ::= SearchAttr | AggregateAttr
 
 SearchAttr
-    ::=    '@' AttrName ('.' '$' AttrName)*
+          ::= '@' AttrName ('.' '$' AttrName)*
 
 AggregateAttr
-    ::=    AggFunc '(' SearchAttr? ')'
+          ::= AggFunc '(' SearchAttr? ')'
 
 AttrName
-    ::=    NCName
+          ::= NCName
 
 AggFunc
-    ::=   '$min' | '$max' | '$avg' | '$sum' | '$count'
+          ::= '$min' | '$max' | '$avg' | '$sum' | '$count'
 
 //// expression
 Expression
-    ::=    OrExpr
+          ::= OrExpr
 
 OrExpr
-    ::=    AndExpr ('or' AndExpr)*
+          ::= AndExpr ('or' AndExpr)*
 
 AndExpr
-    ::=    NotExpr ('and' NotExpr)*
+          ::= NotExpr ('and' NotExpr)*
 
 NotExpr
-    ::=    'not'? PrimaryExpr
+          ::= 'not'? PrimaryExpr
 
 PrimaryExpr
     ::=    '(' Expression ')'
-    |    CompExpr
-    |    InExpr
-    |    RegexExpr
     |    ExistExpr
-    |    SubQueryExpr
     |    IsnullExpr
     |    IsemptyExpr
+    |    Attribute ( CompExpr | InExpr | RegexExpr | SubQueryExpr )
 
 CompExpr
-    ::=    Attribute ('=' | '!=' | '>' | '<' | '>=' | '<=') Value
+    ::=    ('=' | '!=' | '>' | '<' | '>=' | '<=') Value
 
 InExpr
-    ::=    Attribute 'in' ValueList
+    ::=    'in' ValueList
 
 RegexExpr
-    ::=    Attribute '=~' ExpValue
+    ::=    '=~' ExpValue
 
 SubQueryExpr
-    ::=    Attribute '=&' Query
+    ::=    '=&' Query
 
 ExistExpr
-    ::=    'exists' Attribute
+          ::= 'exists' Attribute
 
 IsnullExpr
-    ::=    'isnull' Attribute
+          ::= 'isnull' Attribute
 
 IsemptyExpr
-    ::=    'isempty' Attribute
+          ::= 'isempty' Attribute
 
 ValueList
-    ::=    '(' Value (',' Value)* ')'
+          ::= '(' Value (',' Value)* ')'
 
-Value
-    ::=    IntVal
-    |    DoubleVal
-    |    StrVal
-    |    BoolVal
-    |    DateVal
+Value     ::= IntVal
+            | DoubleVal
+            | StrVal
+            | BoolVal
+            | DateVal
 
-IntVal
-    ::=    IntegerLiteral
+IntVal    ::= IntegerLiteral
 
 DoubleVal
-    ::=    DecimalLiteral
+          ::= DecimalLiteral
 
 ExpValue
     ::=  StrVal ('/i' | '/s')?
