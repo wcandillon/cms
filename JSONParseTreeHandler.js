@@ -1,4 +1,4 @@
-exports.JSONParseTreeHandler = function (code) {
+exports.JSONParseTreeHandler = function(code) {
     'use strict';
 
     //List of Nodes to be indexed
@@ -76,7 +76,7 @@ exports.JSONParseTreeHandler = function (code) {
             ptr.children.pop();
         }
 
-        if(toBeIndex.indexOf(ptr.name) !== -1) {
+        if (toBeIndex.indexOf(ptr.name) !== -1) {
             ast.index.push(ptr);
         }
 
@@ -98,39 +98,39 @@ exports.JSONParseTreeHandler = function (code) {
         }
     }
 
-    this.closeParseTree = function () {
+    this.closeParseTree = function() {
         while (ptr.getParent !== null) {
             popNode();
         }
         popNode();
     };
 
-    this.peek = function () {
+    this.peek = function() {
         return ptr;
     };
 
-    this.getParseTree = function () {
+    this.getParseTree = function() {
         return ast;
     };
 
-    this.reset = function () {}; //input
+    this.reset = function() {}; //input
 
-    this.startNonterminal = function (name, begin) {
+    this.startNonterminal = function(name, begin) {
         pushNode(name, begin);
     };
 
-    this.endNonterminal = function () {//name, end
+    this.endNonterminal = function() { //name, end
         popNode();
     };
 
-    this.terminal = function (name, begin, end) {
+    this.terminal = function(name, begin, end) {
         name = (name.substring(0, 1) === '\'' && name.substring(name.length - 1) === '\'') ? 'TOKEN' : name;
         pushNode(name, begin);
         setValue(ptr, begin, end);
         popNode();
     };
 
-    this.whitespace = function (begin, end) {
+    this.whitespace = function(begin, end) {
         var name = 'WS';
         pushNode(name, begin);
         setValue(ptr, begin, end);
